@@ -3,7 +3,7 @@ variable "aks_cluster_name" {
 }
 
 variable "kubernetes_version" {
-    default = "1.15.5"
+    default = "1.20.5"
 }
 
 variable vm_size {
