@@ -44,7 +44,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Apply failed for ${{ steps.vars.outputs.sha_short }}        
+            const output = `#### Apply failed for \`${{ steps.vars.outputs.sha_short }}\`        
             
             *Pusher: @${{ github.actor }}*`;
                                       
