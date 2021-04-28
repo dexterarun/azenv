@@ -30,8 +30,8 @@ module "monitoring" {
 
 // ACR
 resource "azurerm_resource_group" "acr_rg" {
-  name     = "${var.prefix}-${var.env}-${var.loc.short}-registry"
-  location = var.loc.long
+      name     = "${var.prefix}-${var.env}-${var.loc.short}-registry"
+             location = var.loc.long
 }
 
 module "acr" {
