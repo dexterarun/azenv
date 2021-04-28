@@ -24,9 +24,12 @@ jobs:
         run: terraform fmt         
 
       # Checkout
-      - uses: actions/checkout@v2
-      - id: push
-      - run: |          
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Git commit and push
+        id: push
+        run: |          
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
