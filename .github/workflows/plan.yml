@@ -92,16 +92,3 @@ jobs:
               body: output
             })
 
-      - uses: actions/github-script@0.9.0  
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const output = `#### Plan Done (test)`;
-                                      
-            github.issues.create({         
-              title: "Plan Done (test)",
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ["success"],
-              body: output
-            })

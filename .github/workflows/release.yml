@@ -31,19 +31,6 @@ jobs:
           draft: false
           prerelease: false
 
-      - uses: actions/github-script@0.9.0  
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const output = `#### Apply Done (test)`;
-                                      
-            github.issues.create({         
-              title: Apply Done (test)
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: output
-            })
-
   on-failure:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
@@ -52,12 +39,14 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Apply Failed`;
-              
-            github.issues.createIssue({         
-              title: Apply failed     
+            const output = `#### Apply failed 
+                        
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;;
+                                      
+            github.issues.create({         
+              title: "Terraform apply failed",
               owner: context.repo.owner,
               repo: context.repo.repo,
+              labels: ["failure"],
               body: output
             })
-  
