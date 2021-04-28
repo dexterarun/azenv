@@ -35,13 +35,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Apply Done (test)
-            
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*
-
-            `;
-              
-            github.issues.createIssue({         
+            const output = `#### Apply Done (test)`;
+                                      
+            github.issues.create({         
               title: Apply Done (test)
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -56,11 +52,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Apply Failed
-            
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*
-
-            `;
+            const output = `#### Apply Failed`;
               
             github.issues.createIssue({         
               title: Apply failed     
