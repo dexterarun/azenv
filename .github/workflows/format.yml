@@ -25,11 +25,12 @@ jobs:
 
       - name: Terraform fmt
         id: fmt
-        run: terraform fmt         
+        run: terraform fmt                 
 
       - name: Git commit and push
         id: push
-        run: |          
+        run: |       
+          git checkout -b tf-fmt   
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
@@ -51,7 +52,7 @@ jobs:
             github.pulls.create({
               title: "Terraform format Action"
               owner: context.repo.owner,
-              head : context.repo.repo,
+              head : "tf-fmt",
               base : "main",
               body: output
             })
