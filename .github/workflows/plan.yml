@@ -80,7 +80,7 @@ jobs:
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
             
             <details><summary>Show Plan</summary>
-            \`\`\`$ {{ process.env.PLAN }}\`\`\`
+            \`\`\`${{ process.env.PLAN }}\`\`\`
             #### See: [Plan Summary log](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
             
             </details>
