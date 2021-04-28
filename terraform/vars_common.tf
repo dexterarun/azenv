@@ -1,14 +1,14 @@
-variable prefix {
-    default = "azenv"
+variable "prefix" {
+  default = "azenv"
 }
 
-variable env {
-    default = "dev"
+variable "env" {
+  default = "dev"
 }
 
-variable loc {
-    default = {
-        short = "uks"
-        long = "uk south"
-    }
+variable "loc" {
+  default = {
+    short = "uks"
+    long  = "uk south"
+  }
 }
