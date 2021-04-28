@@ -1,0 +1,55 @@
+name: Format Only
+on:
+  workflow_dispatch:
+
+jobs:
+  fmt-init-and-plan:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: terraform    
+    steps:
+      # Install the latest version of Terraform CLI 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.15.1
+
+      - name: Terraform version
+        run: terraform version
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt         
+
+      # Checkout
+      - uses: actions/checkout@v2
+      - id: push
+      - run: |          
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Ran terraform fmt"
+          git push
+      
+      # publish results as a comment if workflow was a pull request
+      # see: https://github.com/hashicorp/setup-terraform
+      - uses: actions/github-script@0.9.0  
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### Applied Terraform format
+            #### Terraform fmt ⚙️\`${{ steps.fmt.outputs.stdout }}\`
+            #### Git push 🤖${{ steps.push.outputs.stdout }}                       
+            
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
+              
+            github.pulls.create({
+              title: "Terraform format Action"
+              owner: context.repo.owner,
+              head : context.repo.repo,
+              base : "main",
+              body: output
+            })
+
