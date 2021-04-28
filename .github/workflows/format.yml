@@ -10,6 +10,10 @@ jobs:
         shell: bash
         working-directory: terraform    
     steps:
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+
       # Install the latest version of Terraform CLI 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -22,10 +26,6 @@ jobs:
       - name: Terraform fmt
         id: fmt
         run: terraform fmt         
-
-      # Checkout
-      - name: Checkout
-        uses: actions/checkout@v2
 
       - name: Git commit and push
         id: push
