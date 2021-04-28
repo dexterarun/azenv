@@ -6,6 +6,6 @@ output "vnet" {
     value = azurerm_virtual_network.vnet   
 }
 
-output "vnet_subnets" {    
-    value = azurerm_subnet.subnets   
-}
+# output "vnet_subnets" {    
+#     value = azurerm_subnet.subnets   
+# }

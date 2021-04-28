@@ -9,22 +9,39 @@ resource "azurerm_virtual_network" "vnet" {
   location            = var.vnet_loc.long
   resource_group_name = var.vnet_rg
   address_space       = var.vnet_addr_space
-  
+
+  dynamic "subnet" {
+    for_each = [for s in var.vnet_subnets: s if s.default_nsg == true]
+    content {
+        name = "${var.prefix}-${var.env}-${var.vnet_loc.short}-${subnet.value.name}"
+        address_prefix = subnet.value.cidr[0]
+        security_group = azurerm_network_security_group.default_nsg.id
+    }
+  }
+
+  dynamic "subnet" {
+    for_each = [for s in var.vnet_subnets: s if s.default_nsg == false]
+    content {
+        name = "${var.prefix}-${var.env}-${var.vnet_loc.short}-${subnet.value.name}"
+        address_prefix = subnet.value.cidr[0]
+    }
+  }
+
   tags = {
     product = var.prefix
     environment = var.env
   }
 }
 
-resource "azurerm_subnet" "subnets" {
-  count = length(var.vnet_subnets)
-  name                 = "${var.prefix}-${var.env}-${var.vnet_loc.short}-${lookup(var.vnet_subnets[count.index], "name")}"
-  resource_group_name = var.vnet_rg
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = lookup(var.vnet_subnets[count.index], "cidr")
-}
+# resource "azurerm_subnet" "subnets" {
+#   count = length(var.vnet_subnets)
+#   name                 = "${var.prefix}-${var.env}-${var.vnet_loc.short}-${lookup(var.vnet_subnets[count.index], "name")}"
+#   resource_group_name = var.vnet_rg
+#   virtual_network_name = azurerm_virtual_network.vnet.name
+#   address_prefixes     = lookup(var.vnet_subnets[count.index], "cidr")
+# }
 
 # resource "azurerm_subnet_network_security_group_association" "subnet_security_group_association" {   
-#   subnet_id                 = azurerm_subnet.subnets.*.id
+#   subnet_id                 = ..
 #   network_security_group_id = azurerm_network_security_group.example.id
 # }
