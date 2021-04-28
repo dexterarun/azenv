@@ -1,3 +1,4 @@
+// Networking 
 resource "azurerm_resource_group" "vnet_rg" {
   name     = "${var.prefix}-${var.env}-${var.loc.short}-networking"
   location = var.loc.long
@@ -13,6 +14,7 @@ module "networking" {
     vnet_subnets = var.vnet_subnets
 }
 
+// Monitoring
 resource "azurerm_resource_group" "monitoring_rg" {
   name     = "${var.prefix}-${var.env}-${var.loc.short}-monitoring"
   location = var.loc.long
@@ -26,6 +28,21 @@ module "monitoring" {
   loc = var.loc
 }
 
+// ACR
+resource "azurerm_resource_group" "acr_rg" {
+  name     = "${var.prefix}-${var.env}-${var.loc.short}-registry"
+  location = var.loc.long
+}
+
+module "acr" {
+  source = "./modules/acr/"
+  prefix = var.prefix
+  env = var.env
+  rg_name = azurerm_resource_group.acr_rg.name
+  loc = var.loc
+}
+
+// AKS
 resource "azurerm_resource_group" "aks_rg" {
   name     = "${var.prefix}-${var.env}-${var.loc.short}-aks"
   location = var.loc.long
