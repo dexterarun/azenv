@@ -2,9 +2,9 @@ variable prefix {}
 
 variable env {}
 
-variable vnet_rg {}
+variable rg_name {}
 
-variable vnet_loc {}
+variable loc {}
 
 variable vnet_addr_space {}
 

@@ -1,19 +1,19 @@
 resource "azurerm_network_security_group" "default_nsg" {
-  name                = "${var.prefix}-${var.env}-${var.vnet_loc.short}"
-  location            = var.vnet_loc.long
-  resource_group_name = var.vnet_rg
+  name                = "${var.prefix}-${var.env}-${var.loc.short}"
+  location            = var.loc.long
+  resource_group_name = var.rg_name
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = "${var.prefix}-${var.env}-${var.vnet_loc.short}"
-  location            = var.vnet_loc.long
-  resource_group_name = var.vnet_rg
+  name                = "${var.prefix}-${var.env}-${var.loc.short}"
+  location            = var.loc.long
+  resource_group_name = var.rg_name
   address_space       = var.vnet_addr_space
 
   dynamic "subnet" {
     for_each = [for s in var.vnet_subnets: s if s.default_nsg == true]
     content {
-        name = "${var.prefix}-${var.env}-${var.vnet_loc.short}-${subnet.value.name}"
+        name = "${var.prefix}-${var.env}-${var.loc.short}-${subnet.value.name}"
         address_prefix = subnet.value.cidr[0]
         security_group = azurerm_network_security_group.default_nsg.id
     }
@@ -22,7 +22,7 @@ resource "azurerm_virtual_network" "vnet" {
   dynamic "subnet" {
     for_each = [for s in var.vnet_subnets: s if s.default_nsg == false]
     content {
-        name = "${var.prefix}-${var.env}-${var.vnet_loc.short}-${subnet.value.name}"
+        name = "${var.prefix}-${var.env}-${var.loc.short}-${subnet.value.name}"
         address_prefix = subnet.value.cidr[0]
     }
   }
@@ -35,8 +35,8 @@ resource "azurerm_virtual_network" "vnet" {
 
 # resource "azurerm_subnet" "subnets" {
 #   count = length(var.vnet_subnets)
-#   name                 = "${var.prefix}-${var.env}-${var.vnet_loc.short}-${lookup(var.vnet_subnets[count.index], "name")}"
-#   resource_group_name = var.vnet_rg
+#   name                 = "${var.prefix}-${var.env}-${var.loc.short}-${lookup(var.vnet_subnets[count.index], "name")}"
+#   resource_group_name = var.rg_name
 #   virtual_network_name = azurerm_virtual_network.vnet.name
 #   address_prefixes     = lookup(var.vnet_subnets[count.index], "cidr")
 # }
