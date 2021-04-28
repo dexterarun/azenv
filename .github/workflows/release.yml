@@ -41,7 +41,7 @@ jobs:
           script: |
             const output = `#### Apply failed 
                         
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;;
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;
                                       
             github.issues.create({         
               title: "Terraform apply failed",
