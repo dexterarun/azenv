@@ -52,7 +52,7 @@ jobs:
             github.pulls.create({
               title: "Terraform format Action"
               owner: context.repo.owner,
-              head : context.repo.repo,
+              head : "tf-fmt",
               base : "main",
               body: output
             })
