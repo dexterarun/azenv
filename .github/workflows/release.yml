@@ -48,24 +48,24 @@ jobs:
               body: output
             })
 
-  # on-failure:
-  #   runs-on: ubuntu-latest
-  #   if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-  #   steps:
-  #     - uses: actions/github-script@0.9.0  
-  #       with:
-  #         github-token: ${{ secrets.GITHUB_TOKEN }}
-  #         script: |
-  #           const output = `#### Apply Failed
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - uses: actions/github-script@0.9.0  
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### Apply Failed
             
-  #           *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*
 
-  #           `;
+            `;
               
-  #           github.issues.createIssue({         
-  #             title: Apply failed     
-  #             owner: context.repo.owner,
-  #             repo: context.repo.repo,
-  #             body: output
-  #           })
+            github.issues.createIssue({         
+              title: Apply failed     
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
   
