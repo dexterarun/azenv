@@ -40,10 +40,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   addon_profile {
 
-    kube_dashboard {
-      enabled = true
-    }
-
     azure_policy {
       enabled = true
     }
@@ -60,7 +56,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "userpool" {
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   vnet_subnet_id        = var.vnet_subnet_id
   availability_zones    = [ "1", "2" ]
-  
+
   enable_auto_scaling  = true
   node_count           = var.user_pool.init_count
   min_count            = var.user_pool.min_count
