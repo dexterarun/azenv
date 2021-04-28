@@ -81,7 +81,7 @@ jobs:
             
             <details><summary>Show Plan</summary>
             
-            #### See: [Plan Summary log](https://github.com/${{ github.repository }}/runs/${{ github.job }}?check_suite_focus=true)
+            #### See: [Plan Summary log](https://github.com/${{ github.repository }}/runs/${{ github.run_id }}?check_suite_focus=true)
             
             </details>
             
