@@ -25,17 +25,21 @@ jobs:
 
       - name: Terraform fmt
         id: fmt
-        run: terraform fmt                 
+        run: terraform fmt   
+
+      - name: set output for short sha
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"  
 
       - name: Git commit and push
         id: push
         run: |       
-          git checkout -b gh-workflows/tf-fmt   
+          git checkout -b temp/tf-fmt-${{ steps.vars.outputs.sha_short }}   
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
           git commit -m "Ran terraform fmt"
-          git push origin gh-workflows/tf-fmt
+          git push origin temp/tf-fmt-${{ steps.vars.outputs.sha_short }} 
       
       # publish results as a comment if workflow was a pull request
       # see: https://github.com/hashicorp/setup-terraform
@@ -52,7 +56,7 @@ jobs:
             github.pulls.create({
               title: "Terraform format workflow",
               owner: context.repo.owner,
-              head : "gh-workflows/tf-fmt",
+              head : "temp/tf-fmt-${{ steps.vars.outputs.sha_short }}",
               base : "main",
               body: output
             })
