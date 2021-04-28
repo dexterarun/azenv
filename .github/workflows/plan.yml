@@ -26,7 +26,11 @@ jobs:
 
       # Initialize with remote state
       - name: Terraform Init
-        run: terraform init -backend-config="resource_group_name=${{ secrets.TF_RG_NAME }}" -backend-config="storage_account_name=${{ secrets.TF_SG_ACCT_NAME }}" -backend-config="container_name=${{ secrets.TF_SG_CONTAINER_NAME }}" -backend-config="key=${{ secrets.TF_STATE_KEY }}" 
+        run: |
+          terraform init -backend-config="resource_group_name=${{ secrets.TF_RG_NAME }}" \
+          -backend-config="storage_account_name=${{ secrets.TF_SG_ACCT_NAME }}" \
+          -backend-config="container_name=${{ secrets.TF_SG_CONTAINER_NAME }}" \
+          -backend-config="key=${{ secrets.TF_STATE_KEY }}" 
         env:
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
