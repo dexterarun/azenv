@@ -11,24 +11,24 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = var.vnet_addr_space
 
   dynamic "subnet" {
-    for_each = [for s in var.vnet_subnets: s if s.default_nsg == true]
+    for_each = [for s in var.vnet_subnets : s if s.default_nsg == true]
     content {
-        name = "${var.prefix}-${var.env}-${var.loc.short}-${subnet.value.name}"
-        address_prefix = subnet.value.cidr[0]
-        security_group = azurerm_network_security_group.default_nsg.id
+      name           = "${var.prefix}-${var.env}-${var.loc.short}-${subnet.value.name}"
+      address_prefix = subnet.value.cidr[0]
+      security_group = azurerm_network_security_group.default_nsg.id
     }
   }
 
   dynamic "subnet" {
-    for_each = [for s in var.vnet_subnets: s if s.default_nsg == false]
+    for_each = [for s in var.vnet_subnets : s if s.default_nsg == false]
     content {
-        name = "${var.prefix}-${var.env}-${var.loc.short}-${subnet.value.name}"
-        address_prefix = subnet.value.cidr[0]
+      name           = "${var.prefix}-${var.env}-${var.loc.short}-${subnet.value.name}"
+      address_prefix = subnet.value.cidr[0]
     }
   }
 
   tags = {
-    product = var.prefix
+    product     = var.prefix
     environment = var.env
   }
 }
