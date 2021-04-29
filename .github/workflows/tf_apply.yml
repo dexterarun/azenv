@@ -1,8 +1,12 @@
-name: Apply
+name: TF Apply
 on:
   push:
     branches:
-      - main 
+      - main
+    paths:
+      - 'terraform/**'
+    paths-ignore:
+      - '**/*.md'
   workflow_dispatch:
 
 jobs:
