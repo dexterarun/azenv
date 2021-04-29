@@ -25,7 +25,7 @@ jobs:
 
       - name: Terraform fmt
         id: fmt
-        run: terraform fmt   
+        run: terraform fmt -recursive 
 
       - name: set output for short sha
         id: vars
