@@ -1,4 +1,4 @@
-name: Format and PR
+name: TF Format and PR
 on:
   workflow_dispatch:
 

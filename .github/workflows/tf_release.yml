@@ -1,7 +1,7 @@
-name: Release
+name: TF Release
 on:
   workflow_run:
-    workflows: ["Apply"]
+    workflows: ["TF Apply"]
     types: [completed]
   workflow_dispatch:
 
