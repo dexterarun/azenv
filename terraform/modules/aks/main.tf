@@ -15,7 +15,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     min_count            = var.default_pool.min_count
     max_count            = var.default_pool.max_count
  
-    vm_size        = var.vm_size
+       vm_size        = var.vm_size
     vnet_subnet_id = var.vnet_subnet_id
     
     node_labels = var.node_labels
