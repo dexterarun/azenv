@@ -1,9 +1,9 @@
-output "default_nsg" {    
-    value = azurerm_network_security_group.default_nsg   
+output "default_nsg" {
+  value = azurerm_network_security_group.default_nsg
 }
 
-output "vnet" {    
-    value = azurerm_virtual_network.vnet   
+output "vnet" {
+  value = azurerm_virtual_network.vnet
 }
 
 # output "vnet_subnets" {    
