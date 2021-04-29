@@ -45,6 +45,7 @@ jobs:
       # see: https://github.com/hashicorp/setup-terraform
       - uses: actions/github-script@0.9.0  
         with:
+          # use PAT to work around limitation on triggering actions from bot created PR
           github-token: ${{ secrets.TF_FMT_PR_TOKEN }}
           script: |
             const output = `#### Applied Terraform format
