@@ -30,8 +30,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
     pod_cidr           = var.network_profile.pod_cidr
   }
 
-  role_based_access_control {
-    enabled = true
+        role_based_access_control {
+        enabled = true
   }
 
   identity {
