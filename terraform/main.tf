@@ -49,8 +49,8 @@ resource "azurerm_resource_group" "aks_rg" {
 }
 
 resource "azurerm_resource_group" "aks_rg_2" {
-    name     = "${var.prefix}-${var.env}-${var.loc.short}-aks-live-demo"
-      location = var.loc.long
+  name     = "${var.prefix}-${var.env}-${var.loc.short}-aks-live-demo"
+  location = var.loc.long
 }
 
 data "azurerm_subnet" "aks_subnet" {
