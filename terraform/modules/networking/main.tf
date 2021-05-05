@@ -13,7 +13,7 @@ resource "azurerm_virtual_network" "vnet" {
   dynamic "subnet" {
     for_each = [for s in var.vnet_subnets : s if s.default_nsg == true]
     content {
-      name           = "${var.res_prefix}-${subnet.value.name}"
+      name           = subnet.value.name
       address_prefix = subnet.value.cidr[0]
       security_group = azurerm_network_security_group.default_nsg.id
     }
