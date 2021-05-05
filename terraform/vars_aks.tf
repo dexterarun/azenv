@@ -6,7 +6,7 @@ variable "kubernetes_version" {
   default = "1.20.5"
 }
 
-variable "vm_size" {
+variable "aks_vm_size" {
   default = "Standard_B2s"
 }
 
