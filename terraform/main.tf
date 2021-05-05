@@ -90,7 +90,7 @@ resource "azurerm_resource_group" "vms_rg" {
 data "azurerm_subnet" "vms" {
   name                 = "${var.prefix}-${var.env}-${var.loc.short}-vms"
   virtual_network_name = module.networking.vnet.name
-  resource_group_name  = azurerm_resource_group.vms_rg.name
+  resource_group_name  = azurerm_resource_group.vnet_rg.name
 }
 
 module "vm" {
@@ -113,7 +113,7 @@ module "vm" {
 
 
 //K8s iaas (k8s from scratch on Vms)
-resource "azurerm_resource_group" "k8s" {
+resource "azurerm_resource_group" "k8s_rg" {
   name     = "${var.prefix}-${var.env}-${var.loc.short}-k8s"
   location = var.loc.long
 }
@@ -129,7 +129,7 @@ module "k8s-iaas" {
 
   prefix = var.prefix
   loc = var.loc
-  rg_name = azurerm_resource_group.k8s.name
+  rg_name = azurerm_resource_group.k8s_rg.name
   env = var.env
 
   master_count = var.master_count
