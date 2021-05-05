@@ -1,5 +1,5 @@
 output "nic" {
-    value = azurerm_network_interface.vm
+    value = azurerm_network_interface.nic
 }
 
 output "vm" {
