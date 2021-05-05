@@ -1,5 +1,6 @@
 module "vm_master" {
   source = "../../modules/vm/"
+   res_prefix = var.res_prefix
   prefix = var.prefix
   loc = var.loc
   rg_name = var.rg_name
@@ -18,6 +19,7 @@ module "vm_master" {
 
 module "vm_worker" {
   source = "../../modules/vm/"
+  res_prefix = var.res_prefix
   prefix = var.prefix
   loc = var.loc
   rg_name = var.rg_name
@@ -29,6 +31,7 @@ module "vm_worker" {
   subnet_id = var.subnet_id 
 
   vm_size = var.vm_size
+
 
   vm_admin = var.vm_admin
   pub_key_loc = var.pub_key_loc

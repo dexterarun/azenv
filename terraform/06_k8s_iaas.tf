@@ -1,17 +1,18 @@
 //cluster manager vm
 resource "azurerm_resource_group" "vms_rg" {
-  name     = "${var.prefix}-${var.env}-${var.loc.short}-vms"
+  name     = "${local.res_prefix}-vms"
   location = var.loc.long
 }
 
 data "azurerm_subnet" "vms" {
-  name                 = "${var.prefix}-${var.env}-${var.loc.short}-vms"
+  name                 = "${local.res_prefix}-vms"
   virtual_network_name = module.networking.vnet.name
   resource_group_name  = azurerm_resource_group.vnet_rg.name
 }
 
 module "vm" {
   source = "./modules/vm/"
+  res_prefix = local.res_prefix
   prefix = var.prefix
   loc = var.loc
   rg_name = azurerm_resource_group.vms_rg.name
@@ -31,18 +32,19 @@ module "vm" {
 
 //K8s iaas (k8s from scratch on Vms)
 resource "azurerm_resource_group" "k8s_rg" {
-  name     = "${var.prefix}-${var.env}-${var.loc.short}-k8s"
+  name     = "${local.res_prefix}-k8s"
   location = var.loc.long
 }
 
 data "azurerm_subnet" "k8s" {
-  name                 = "${var.prefix}-${var.env}-${var.loc.short}-k8s-iaas"
+  name                 = "${local.res_prefix}-k8s-iaas"
   virtual_network_name = module.networking.vnet.name
   resource_group_name  = azurerm_resource_group.vnet_rg.name
 }
 
 module "k8s-iaas" {
   source = "./modules/k8s-iaas/"  
+   res_prefix = local.res_prefix
 
   prefix = var.prefix
   loc = var.loc

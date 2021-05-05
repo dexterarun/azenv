@@ -1,19 +1,20 @@
 // AKS
 resource "azurerm_resource_group" "aks_rg" {
-  name     = "${var.prefix}-${var.env}-${var.loc.short}-aks"
+  name     = "${local.res_prefix}-aks"
   location = var.loc.long
 }
 
 data "azurerm_subnet" "aks_subnet" {
-  name                 = "${var.prefix}-${var.env}-${var.loc.short}-aks"
+  name                 = "${local.res_prefix}-aks"
   virtual_network_name = module.networking.vnet.name
   resource_group_name  = azurerm_resource_group.vnet_rg.name
 }
 
 module "aks" {
   source = "./modules/aks/"
+   res_prefix = local.res_prefix
 
-  aks_cluster_name = "${var.prefix}-${var.env}-${var.loc.short}"
+  aks_cluster_name = local.res_prefix
   loc              = var.loc
   rg_name          = azurerm_resource_group.aks_rg.name
 

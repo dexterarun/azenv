@@ -1,11 +1,11 @@
 resource "azurerm_network_security_group" "default_nsg" {
-  name                = "${var.prefix}-${var.env}-${var.loc.short}"
+  name                = var.res_prefix
   location            = var.loc.long
   resource_group_name = var.rg_name
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = "${var.prefix}-${var.env}-${var.loc.short}"
+  name                = var.res_prefix
   location            = var.loc.long
   resource_group_name = var.rg_name
   address_space       = var.vnet_addr_space
@@ -13,7 +13,7 @@ resource "azurerm_virtual_network" "vnet" {
   dynamic "subnet" {
     for_each = [for s in var.vnet_subnets : s if s.default_nsg == true]
     content {
-      name           = "${var.prefix}-${var.env}-${var.loc.short}-${subnet.value.name}"
+      name           = "${var.res_prefix}-${subnet.value.name}"
       address_prefix = subnet.value.cidr[0]
       security_group = azurerm_network_security_group.default_nsg.id
     }
@@ -22,7 +22,7 @@ resource "azurerm_virtual_network" "vnet" {
   dynamic "subnet" {
     for_each = [for s in var.vnet_subnets : s if s.default_nsg == false]
     content {
-      name           = "${var.prefix}-${var.env}-${var.loc.short}-${subnet.value.name}"
+      name           = "${var.res_prefix}-${subnet.value.name}"
       address_prefix = subnet.value.cidr[0]
     }
   }

@@ -2,6 +2,8 @@ variable prefix {}
 
 variable loc {}
 
+variable res_prefix {}
+
 variable rg_name {}
 
 variable env {}

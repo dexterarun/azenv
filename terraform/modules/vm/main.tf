@@ -1,7 +1,7 @@
 resource "azurerm_network_interface" "nic" {
     count                  = var.vm_count
 
-    name                   = "${var.prefix}-${var.env}-${var.loc.short}-${var.vm_prefix}-${count.index}"
+    name                   = "${var.res_prefix}-${var.vm_prefix}-${count.index}"
     
     location               = var.loc.long
     resource_group_name    =  var.rg_name
@@ -16,7 +16,7 @@ resource "azurerm_network_interface" "nic" {
 resource "azurerm_linux_virtual_machine" "vm" {
     count = var.vm_count
 
-    name = "${var.prefix}-${var.env}-${var.loc.short}-${var.vm_prefix}-${count.index}"
+    name = "${var.res_prefix}-${var.vm_prefix}-${count.index}"
 
     resource_group_name = var.rg_name
     location = var.loc.long
