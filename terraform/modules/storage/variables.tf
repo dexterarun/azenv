@@ -1,0 +1,9 @@
+variable prefix {}
+
+variable loc {}
+
+variable rg_name {}
+
+variable env {}
+
+variable sg_name_suffix {}
