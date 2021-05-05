@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "aks_rg" {
 }
 
 data "azurerm_subnet" "aks_subnet" {
-  name                 = "${local.res_prefix}-aks"
+  name                 = "aks"
   virtual_network_name = module.networking.vnet.name
   resource_group_name  = azurerm_resource_group.vnet_rg.name
 }

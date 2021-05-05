@@ -2,8 +2,8 @@
 // locals will only be visible to root module, so using variables here
 
 locals {
-       res_prefix = "${var.prefix}-${var.env}-${var.loc.short}"
-       alphanumeric_only_res_prefix = "${var.prefix}${var.env}${var.loc.short}"
+       res_prefix = terraform.workspace == "default" ? "${var.prefix}-${var.env}-${var.loc.short}" : "${terraform.workspace}-${var.prefix}-${var.env}-${var.loc.short}"
+       alphanumeric_only_res_prefix = terraform.workspace == "default" ? "${var.prefix}${var.env}${var.loc.short}" : "${terraform.workspace}${var.prefix}${var.env}${var.loc.short}"
 }
 
 # utils

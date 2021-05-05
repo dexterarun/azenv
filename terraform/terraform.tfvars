@@ -1,6 +1,6 @@
 // common
 prefix = "azenv"
-env = "dev"
+env = "demo"
 loc = {
     short = "uks"
     long = "uk south"
