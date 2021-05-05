@@ -8,6 +8,8 @@ variable env {}
 
 variable subnet_id {}
 
+variable cluster_prefix {}
+
 variable vm_size {}
 
 variable vm_admin {}

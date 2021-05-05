@@ -5,7 +5,7 @@ module "vm_master" {
   rg_name = var.rg_name
   env = var.env
 
-  vm_prefix = "k8s-master"
+  vm_prefix = "${var.cluster_prefix}-master"
   vm_count = var.master_count
 
   subnet_id = var.subnet_id
@@ -23,7 +23,7 @@ module "vm_worker" {
   rg_name = var.rg_name
   env = var.env
 
-  vm_prefix = "k8s-worker"
+  vm_prefix = "${var.cluster_prefix}-worker"
   vm_count = var.worker_count
 
   subnet_id = var.subnet_id 
