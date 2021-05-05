@@ -1,7 +1,9 @@
-variable "prefix" {}
+variable prefix {}
 
-variable "env" {}
+variable env {}
 
-variable "rg_name" {}
+variable rg_name {}
 
-variable "loc" {}
+variable loc {}
+
+variable name_suffix {}

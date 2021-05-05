@@ -12,3 +12,10 @@ resource "azurerm_storage_account" "sg_acct" {
     environment = var.env
   }
 }
+
+resource "azurerm_storage_container" "blob_containers" {
+  count = length(var.blob_containers)
+  name                  = var.blob_containers[count.index]
+  storage_account_name  = azurerm_storage_account.sg_acct.name
+  container_access_type = "private"
+}
