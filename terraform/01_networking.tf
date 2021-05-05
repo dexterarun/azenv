@@ -17,7 +17,7 @@ module "networking" {
 }
 
 data "azurerm_subnet" "vnet_gw_subnet" {
-  name                 = "${local.res_prefix}-GatewaySubnet"
+  name                 = "GatewaySubnet"
   virtual_network_name = module.networking.vnet.name
   resource_group_name  = azurerm_resource_group.vnet_rg.name
 }

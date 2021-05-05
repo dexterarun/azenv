@@ -5,7 +5,7 @@ resource "azurerm_resource_group" "vms_rg" {
 }
 
 data "azurerm_subnet" "vms" {
-  name                 = "${local.res_prefix}-vms"
+  name                 = "vms"
   virtual_network_name = module.networking.vnet.name
   resource_group_name  = azurerm_resource_group.vnet_rg.name
 }
@@ -37,7 +37,7 @@ resource "azurerm_resource_group" "k8s_rg" {
 }
 
 data "azurerm_subnet" "k8s" {
-  name                 = "${local.res_prefix}-k8s-iaas"
+  name                 = "k8s-iaas"
   virtual_network_name = module.networking.vnet.name
   resource_group_name  = azurerm_resource_group.vnet_rg.name
 }
