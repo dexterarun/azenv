@@ -11,20 +11,20 @@ data "azurerm_subnet" "vms" {
 }
 
 module "vm" {
-  source = "./modules/vm/"
+  source     = "./modules/vm/"
   res_prefix = local.res_prefix
-  prefix = var.prefix
-  loc = var.loc
-  rg_name = azurerm_resource_group.vms_rg.name
-  env = var.env
+  prefix     = var.prefix
+  loc        = var.loc
+  rg_name    = azurerm_resource_group.vms_rg.name
+  env        = var.env
 
   vm_prefix = "k8s-manager"
-  vm_count = 1
-  subnet_id = data.azurerm_subnet.vms.id 
+  vm_count  = 1
+  subnet_id = data.azurerm_subnet.vms.id
 
   vm_size = "Standard_D2as_v4"
 
-  vm_admin = "suren"
+  vm_admin    = "suren"
   pub_key_loc = "${path.root}/files/id_rsa.pub"
 
 }
@@ -43,21 +43,21 @@ data "azurerm_subnet" "k8s" {
 }
 
 module "k8s-iaas" {
-  source = "./modules/k8s-iaas/"  
-   res_prefix = local.res_prefix
+  source     = "./modules/k8s-iaas/"
+  res_prefix = local.res_prefix
 
-  prefix = var.prefix
-  loc = var.loc
+  prefix  = var.prefix
+  loc     = var.loc
   rg_name = azurerm_resource_group.k8s_rg.name
-  env = var.env
+  env     = var.env
 
   cluster_prefix = var.cluster_prefix
-  master_count = var.master_count
-  worker_count = var.worker_count  
-  
-  subnet_id = data.azurerm_subnet.k8s.id 
-  vm_size = "Standard_D2as_v4"
+  master_count   = var.master_count
+  worker_count   = var.worker_count
 
-  vm_admin = "suren"
+  subnet_id = data.azurerm_subnet.k8s.id
+  vm_size   = "Standard_D2as_v4"
+
+  vm_admin    = "suren"
   pub_key_loc = "${path.root}/files/id_rsa.pub"
 }

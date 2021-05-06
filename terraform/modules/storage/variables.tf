@@ -1,13 +1,13 @@
-variable prefix {}
+variable "prefix" {}
 
-variable res_prefix {}
+variable "res_prefix" {}
 
-variable loc {}
+variable "loc" {}
 
-variable rg_name {}
+variable "rg_name" {}
 
-variable env {}
+variable "env" {}
 
-variable sg_name_suffix {}
+variable "sg_name_suffix" {}
 
-variable blob_containers {}
+variable "blob_containers" {}

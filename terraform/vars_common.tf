@@ -1,11 +1,11 @@
-variable prefix {
+variable "prefix" {
 
 }
 
-variable env {
+variable "env" {
 
 }
 
-variable loc {
+variable "loc" {
 
 }
