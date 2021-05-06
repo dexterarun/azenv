@@ -1,13 +1,13 @@
-variable prefix {}
+variable "prefix" {}
 
-variable res_prefix {}
+variable "res_prefix" {}
 
-variable env {}
+variable "env" {}
 
-variable rg_name {}
+variable "rg_name" {}
 
-variable loc {}
+variable "loc" {}
 
-variable vnet_addr_space {}
+variable "vnet_addr_space" {}
 
-variable vnet_subnets {}
+variable "vnet_subnets" {}

@@ -11,8 +11,8 @@ data "azurerm_subnet" "aks_subnet" {
 }
 
 module "aks" {
-  source = "./modules/aks/"
-   res_prefix = local.res_prefix
+  source     = "./modules/aks/"
+  res_prefix = local.res_prefix
 
   aks_cluster_name = local.res_prefix
   loc              = var.loc

@@ -5,10 +5,10 @@ resource "azurerm_resource_group" "monitoring_rg" {
 }
 
 module "monitoring" {
-  source  = "./modules/monitoring/"
+  source     = "./modules/monitoring/"
   res_prefix = local.res_prefix
-  prefix  = var.prefix
-  env     = var.env
-  rg_name = azurerm_resource_group.monitoring_rg.name
-  loc     = var.loc
+  prefix     = var.prefix
+  env        = var.env
+  rg_name    = azurerm_resource_group.monitoring_rg.name
+  loc        = var.loc
 }

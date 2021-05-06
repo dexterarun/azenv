@@ -1,23 +1,23 @@
-variable prefix {}
+variable "prefix" {}
 
-variable loc {}
+variable "loc" {}
 
-variable res_prefix {}
+variable "res_prefix" {}
 
-variable rg_name {}
+variable "rg_name" {}
 
-variable env {}
+variable "env" {}
 
-variable subnet_id {}
+variable "subnet_id" {}
 
-variable cluster_prefix {}
+variable "cluster_prefix" {}
 
-variable vm_size {}
+variable "vm_size" {}
 
-variable vm_admin {}
+variable "vm_admin" {}
 
-variable pub_key_loc {}
+variable "pub_key_loc" {}
 
-variable master_count {}
+variable "master_count" {}
 
-variable worker_count {}
+variable "worker_count" {}

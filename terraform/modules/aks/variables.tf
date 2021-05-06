@@ -2,29 +2,29 @@ variable "aks_cluster_name" {
   type = string
 }
 
-variable res_prefix {}
+variable "res_prefix" {}
 
-variable loc {}
+variable "loc" {}
 
-variable rg_name {}
+variable "rg_name" {}
 
-variable kubernetes_version {
+variable "kubernetes_version" {
   type = string
 }
 
-variable vm_size {
+variable "vm_size" {
   type = string
 }
 
-variable default_pool {
+variable "default_pool" {
   type = map(any)
 }
 
-variable user_pool {
+variable "user_pool" {
   type = map(any)
 }
 
-variable node_labels {
+variable "node_labels" {
   type = map(any)
   default = {
     "purpose"     = "system_workloads"
@@ -32,7 +32,7 @@ variable node_labels {
   }
 }
 
-variable user_workloads_node_labels {
+variable "user_workloads_node_labels" {
   type = map(any)
   default = {
     "purpose"     = "user_workloads"
@@ -40,14 +40,14 @@ variable user_workloads_node_labels {
   }
 }
 
-variable vnet_subnet_id {
+variable "vnet_subnet_id" {
   type = string
 }
 
-variable network_profile {
+variable "network_profile" {
   type = map(any)
 }
 
-variable log_analytics_workspace_id {
+variable "log_analytics_workspace_id" {
   type = string
 }

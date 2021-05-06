@@ -1,12 +1,12 @@
-variable cluster_prefix {
+variable "cluster_prefix" {
 }
 
-variable master_count {
+variable "master_count" {
 }
 
-variable worker_count {    
+variable "worker_count" {
 }
 
-variable vm_size {
+variable "vm_size" {
 }
 
