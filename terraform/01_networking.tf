@@ -33,6 +33,6 @@ module "gateways" {
   loc             = var.loc
 
   gw_subnet_id = data.azurerm_subnet.vnet_gw_subnet.id
-  gw_addr_space = ["10.0.100.0/24"]
+  gw_addr_space = ["10.100.100.0/24"]
   
 }
